@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class listener implements ActionListener{
+public class listener implements ActionListener {
 	window window = main.window;
 	static player player = new player();
 	static enemy enemy = new enemy();
@@ -18,7 +18,7 @@ public class listener implements ActionListener{
 	// Random Generator
 	Random generator = new Random(System.currentTimeMillis());
 	int rand = 0;
-	
+
 	public listener(JButton button) {
 		button.addActionListener(this);
 	}
@@ -226,38 +226,27 @@ public class listener implements ActionListener{
 			window.floorSelectPanel.setVisible(true);
 		}
 		if (e.getSource() == window.selectFloor) {
+			window.floorSelectPanel.setVisible(false);
+			window.dungeonPanel.setVisible(true);
+			window.dungeonOptionsPanel.setVisible(true);
 			if (window.firstFloor.isSelected()) {
-				window.floorSelectPanel.setVisible(false);
-				window.dungeonPanel.setVisible(true);
-				window.dungeonOptionsPanel.setVisible(true);
 				dungeon.createRoom(database.getFloor1E(), database.getFloor1S(), true);
 				database.setRoom(1);
 				database.setFloor(1);
 			} else if (window.secondFloor.isSelected()) {
-				window.floorSelectPanel.setVisible(false);
-				window.dungeonPanel.setVisible(true);
-				window.dungeonOptionsPanel.setVisible(true);
 				dungeon.createRoom(database.getFloor2E(), database.getFloor2S(), true);
-				database.setRoom(1);;
+				database.setRoom(1);
+				;
 				database.setFloor(2);
 			} else if (window.thirdFloor.isSelected()) {
-				window.floorSelectPanel.setVisible(false);
-				window.dungeonPanel.setVisible(true);
-				window.dungeonOptionsPanel.setVisible(true);
 				dungeon.createRoom(database.getFloor3E(), database.getFloor3S(), true);
 				database.setRoom(1);
 				database.setFloor(3);
 			} else if (window.fourthFloor.isSelected()) {
-				window.floorSelectPanel.setVisible(false);
-				window.dungeonPanel.setVisible(true);
-				window.dungeonOptionsPanel.setVisible(true);
 				dungeon.createRoom(database.getFloor4E(), database.getFloor4S(), true);
 				database.setRoom(1);
 				database.setFloor(4);
 			} else if (window.fifthFloor.isSelected()) {
-				window.floorSelectPanel.setVisible(false);
-				window.dungeonPanel.setVisible(true);
-				window.dungeonOptionsPanel.setVisible(true);
 				dungeon.createRoom(database.getFloor5E(), database.getFloor5S(), true);
 				database.setRoom(1);
 				database.setFloor(5);
@@ -277,88 +266,22 @@ public class listener implements ActionListener{
 			window.displaySpeed.setText("Your Speed: " + player.getSpeed());
 		}
 		if (e.getSource() == window.accuracy1) {
-			if (player.getGold() >= 100 && player.getAccuracy() != 100) {
-				player.setGold(player.getGold() - 100);
-				player.setAccuracy(player.getAccuracy() + 1);
-				window.displayAccuracy.setText("Your Accuracy: " + player.getAccuracy());
-			} else if (player.getAccuracy() == 100) {
-				JOptionPane.showMessageDialog(window.window,
-						"I LIKE PENNIES! (You can't increase this any more stoopid)");
-			} else {
-				JOptionPane.showMessageDialog(window.window, "I LIKE PENNIES! (You don't have enough money dummy)");
-			}
+			shop.increaseAccuracy(100, 1);
 		}
 		if (e.getSource() == window.accuracy2) {
-			if (player.getGold() >= 180 && player.getAccuracy() != 100) {
-				player.setGold(player.getGold() - 180);
-				player.setAccuracy(player.getAccuracy() + 2);
-				if (player.getAccuracy() > 100) {
-					player.setAccuracy(100);
-				}
-				window.displayAccuracy.setText("Your Accuracy: " + player.getAccuracy());
-			} else if (player.getAccuracy() == 100) {
-				JOptionPane.showMessageDialog(window.window,
-						"I LIKE PENNIES! (You can't increase this any more stoopid)");
-			} else {
-				JOptionPane.showMessageDialog(window.window, "I LIKE PENNIES! (You don't have enough money dummy)");
-			}
+			shop.increaseAccuracy(180, 2);
 		}
 		if (e.getSource() == window.accuracy3) {
-			if (player.getGold() >= 240 && player.getAccuracy() != 100) {
-				player.setGold(player.getGold() - 240);
-				player.setAccuracy(player.getAccuracy() + 3);
-				if (player.getAccuracy() > 100) {
-					player.setAccuracy(100);
-				}
-				window.displayAccuracy.setText("Your Accuracy: " + player.getAccuracy());
-			} else if (player.getAccuracy() == 100) {
-				JOptionPane.showMessageDialog(window.window,
-						"I LIKE PENNIES! (You can't increase this any more stoopid)");
-			} else {
-				JOptionPane.showMessageDialog(window.window, "I LIKE PENNIES! (You don't have enough money dummy)");
-			}
+			shop.increaseAccuracy(240, 3);
 		}
 		if (e.getSource() == window.speed1) {
-			if (player.getGold() >= 175 && player.getSpeed() != 10) {
-				player.setGold(player.getGold() - 175);
-				player.setSpeed(player.getSpeed() + 1);
-				window.displaySpeed.setText("Your Speed: " + player.getSpeed());
-			} else if (player.getSpeed() == 10) {
-				JOptionPane.showMessageDialog(window.window,
-						"I LIKE QUARTERS! (You can't increase this any more stoopid)");
-			} else {
-				JOptionPane.showMessageDialog(window.window, "I LIKE QUARTERS! (You don't have enough money dummy)");
-			}
+			shop.increaseSpeed(175, 1);
 		}
 		if (e.getSource() == window.speed2) {
-			if (player.getGold() >= 250 && player.getSpeed() != 10) {
-				player.setGold(player.getGold() - 250);
-				player.setSpeed(player.getSpeed() + 2);
-				if (player.getSpeed() > 10) {
-					player.setSpeed(10);
-				}
-				window.displaySpeed.setText("Your Speed: " + player.getSpeed());
-			} else if (player.getSpeed() == 10) {
-				JOptionPane.showMessageDialog(window.window,
-						"I LIKE QUARTERS! (You can't increase this any more stoopid)");
-			} else {
-				JOptionPane.showMessageDialog(window.window, "I LIKE QUARTERS! (You don't have enough money dummy)");
-			}
+			shop.increaseSpeed(250, 2);
 		}
 		if (e.getSource() == window.speed3) {
-			if (player.getGold() >= 310 && player.getSpeed() != 10) {
-				player.setGold(player.getGold() - 310);
-				player.setSpeed(player.getSpeed() + 3);
-				if (player.getSpeed() > 10) {
-					player.setSpeed(10);
-				}
-				window.displaySpeed.setText("Your Speed: " + player.getSpeed());
-			} else if (player.getSpeed() == 10) {
-				JOptionPane.showMessageDialog(window.window,
-						"I LIKE QUARTERS! (You can't increase this any more stoopid)");
-			} else {
-				JOptionPane.showMessageDialog(window.window, "I LIKE QUARTERS! (You don't have enough money dummy)");
-			}
+			shop.increaseSpeed(310, 3);
 		}
 		if (e.getSource() == window.leaveTrainingGrounds) {
 			window.townPanel.setVisible(true);
@@ -369,107 +292,18 @@ public class listener implements ActionListener{
 		if (e.getSource() == window.amuletShop) {
 			window.townPanel.setVisible(false);
 			window.amuletPanel.setVisible(true);
-			window.amuletName.setText(database.amuletNames[0]);
-			window.amuletDescription.setText(database.amuletDesc[0]);
-			database.currAmuletDisplayed = 0;
-			window.amuletDisplayedCounter.setText((database.currAmuletDisplayed + 1) + "/5");
-			window.previousAmulet.setBackground(Color.darkGray);
-			window.nextAmulet.setBackground(Color.green);
-			if (database.amuletsUnlocked[0]) {
-				window.equipAmulet.setVisible(true);
-				if (database.currAmuletDisplayed == database.currEquippedAmulet) {
-					window.equipAmulet.setText("Equipped");
-				} else {
-					window.equipAmulet.setText("Equip Amulet");
-				}
-			} else {
-				window.equipAmulet.setVisible(false);
-			}
+			shop.enterDrops(window.amuletName, window.amuletDescription, database.amuletNames, database.amuletDesc,
+					window.amuletDisplayedCounter, window.previousAmulet, window.nextAmulet, 5,
+					database.amuletsUnlocked, window.equipAmulet);
 		}
 		if (e.getSource() == window.equipAmulet) {
-			switch (database.currEquippedAmulet) {
-			case 0:
-				player.setAccuracy(player.getAccuracy() - Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 1:
-				player.setSpeed(player.getSpeed() - Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 2:
-				player.setMaxHealth(player.getMaxHealth() - Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 3:
-				player.setDamage(player.getDamage() - Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 4:
-				database.doubleGold = false;
-				break;
-			}
-			database.equippedAmulet[0] = database.amuletNames[database.currAmuletDisplayed];
-			database.equippedAmulet[1] = "" + database.amuletModifiers[database.currAmuletDisplayed];
-			window.equipAmulet.setText("Equipped");
-			database.currEquippedAmulet = database.currAmuletDisplayed;
-			switch (database.currEquippedAmulet) {
-			case 0:
-				player.setAccuracy(player.getAccuracy() + Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 1:
-				player.setSpeed(player.getSpeed() + Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 2:
-				player.setHealth(player.getHealth() + Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 3:
-				player.setDamage(player.getDamage() + Integer.parseInt(database.equippedAmulet[1]));
-				break;
-			case 4:
-				database.doubleGold = true;
-				break;
-			}
-			window.townAmuletEquipped.setText("Amulet: " + database.equippedAmulet[0]);
+			shop.equipAmulet(database.equippedAmulet, database.amuletNames, database.amuletModifiers, window.equipAmulet, window.townAmuletEquipped);
 		}
 		if (e.getSource() == window.nextAmulet) {
-			if (database.currAmuletDisplayed < database.amuletNames.length - 1) {
-				database.currAmuletDisplayed++;
-				window.amuletDisplayedCounter.setText((database.currAmuletDisplayed + 1) + "/5");
-				window.amuletName.setText(database.amuletNames[database.currAmuletDisplayed]);
-				window.amuletDescription.setText(database.amuletDesc[database.currAmuletDisplayed]);
-				if (database.currAmuletDisplayed >= database.amuletNames.length - 1) {
-					window.nextAmulet.setBackground(Color.darkGray);
-				}
-				window.previousAmulet.setBackground(Color.green);
-				if (database.amuletsUnlocked[database.currAmuletDisplayed]) {
-					window.equipAmulet.setVisible(true);
-					if (database.currEquippedAmulet == database.currAmuletDisplayed) {
-						window.equipAmulet.setText("Equipped");
-					} else {
-						window.equipAmulet.setText("Equip Amulet");
-					}
-				} else {
-					window.equipAmulet.setVisible(false);
-				}
-			}
+			shop.nextDrop(window.amuletDisplayedCounter, window.amuletName, window.amuletDescription, database.amuletNames, database.amuletDesc, 5, window.nextAmulet, window.previousAmulet, database.amuletsUnlocked, window.equipAmulet);
 		}
 		if (e.getSource() == window.previousAmulet) {
-			if (database.currAmuletDisplayed > 0) {
-				database.currAmuletDisplayed--;
-				window.amuletDisplayedCounter.setText((database.currAmuletDisplayed + 1) + "/5");
-				window.amuletName.setText(database.amuletNames[database.currAmuletDisplayed]);
-				window.amuletDescription.setText(database.amuletDesc[database.currAmuletDisplayed]);
-				if (database.currAmuletDisplayed <= 0) {
-					window.previousAmulet.setBackground(Color.darkGray);
-				}
-				window.nextAmulet.setBackground(Color.green);
-				if (database.amuletsUnlocked[database.currAmuletDisplayed]) {
-					window.equipAmulet.setVisible(true);
-					if (database.currEquippedAmulet == database.currAmuletDisplayed) {
-						window.equipAmulet.setText("Equipped");
-					} else {
-						window.equipAmulet.setText("Equip Amulet");
-					}
-				} else {
-					window.equipAmulet.setVisible(false);
-				}
-			}
+			shop.previousDrop(window.amuletDisplayedCounter, window.amuletName, window.amuletDescription, database.amuletNames, database.amuletDesc, 5, window.nextAmulet, window.previousAmulet, database.amuletsUnlocked, window.equipAmulet);
 		}
 		if (e.getSource() == window.leaveAmuletShop) {
 			window.amuletPanel.setVisible(false);
@@ -498,156 +332,81 @@ public class listener implements ActionListener{
 				JOptionPane.showMessageDialog(window.window, "How did both of you dumbasses miss.");
 				break;
 			}
-			if (player.getHealth() <= 0) {
+			if (dungeon.playerDead()) {
 				window.dungeonPanel.setVisible(false);
 				window.townPanel.setVisible(true);
-				JOptionPane.showMessageDialog(window.window,
-						"You passed out from all of your injuries and were brought back to town! The doctor took some of your gold as expenses!");
-				player.setGold(player.getGold() - player.getGold() / 20);
-				window.goldCounter.setText("Gold: " + player.getGold());
+				dungeon.playerDead();
 				playerData.Save(database.getSave());
 			}
-			if (enemy.getHealth() <= 0) {
+			boolean[] rewards = dungeon.enemyDead(database.getRoom(), database.getFloor(), database.getBoss1(), database.getBoss2(), database.getBoss3(), database.getBoss4(), database.getBoss5());
+			if (rewards[0]) {
 				window.dungeonEnemyDefeatedPanel.setVisible(true);
 				window.dungeonOptionsPanel.setVisible(false);
-				if (database.getRoom() >= 10) {
-					int tempGold = 0;
-					int dropAmulet = 0;
-					switch (database.getFloor()) {
+				if (rewards[1]) {
+					switch(database.getFloor()) {
 					case 1:
-						if (database.getBoss1()) {
-							tempGold = generator.nextInt(10) + 5;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 50 gold!");
-							player.setGold(player.getGold() + 50);
-							database.setBoss1(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[0] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a small crosshair.");
-							database.amuletNames[0] = database.hiddenAmuletNames[0];
-							database.amuletDesc[0] = database.hiddenAmuletDesc[0];
-						}
+						database.setBoss1(true);
 						break;
 					case 2:
-						if (database.getBoss2()) {
-							tempGold = generator.nextInt(20) + 15;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 175 gold!");
-							player.setGold(player.getGold() + 150);
-							database.setBoss2(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[1] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a rabbit.");
-							database.amuletNames[1] = database.hiddenAmuletNames[1];
-							database.amuletDesc[1] = database.hiddenAmuletDesc[1];
-						}
+						database.setBoss2(true);
 						break;
 					case 3:
-						if (database.getBoss3()) {
-							tempGold = generator.nextInt(30) + 25;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 300 gold!");
-							player.setGold(player.getGold() + 250);
-							database.setBoss3(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[2] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a shield.");
-							database.amuletNames[2] = database.hiddenAmuletNames[2];
-							database.amuletDesc[2] = database.hiddenAmuletDesc[2];
-						}
+						database.setBoss3(true);
 						break;
 					case 4:
-						if (database.getBoss4()) {
-							tempGold = generator.nextInt(40) + 35;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 425 gold!");
-							player.setGold(player.getGold() + 350);
-							database.setBoss4(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[3] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a dagger.");
-							database.amuletNames[3] = database.hiddenAmuletNames[3];
-							database.amuletDesc[3] = database.hiddenAmuletDesc[3];
-						}
+						database.setBoss4(true);
 						break;
 					case 5:
-						if (database.getBoss5()) {
-							tempGold = generator.nextInt(50) + 45;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 550 gold!");
-							player.setGold(player.getGold() + 500);
-							database.setBoss5(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[4] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a gold coin.");
-							database.amuletNames[4] = database.hiddenAmuletNames[4];
-							database.amuletDesc[4] = database.hiddenAmuletDesc[4];
-						}
+						database.setBoss5(true);
 						break;
 					}
+				}
+				if (rewards[2]) {
+					switch(database.getFloor()) {
+					case 1:
+						database.amuletsUnlocked[0] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a small crosshair.");
+						database.amuletNames[0] = database.hiddenAmuletNames[0];
+						database.amuletDesc[0] = database.hiddenAmuletDesc[0];
+						break;
+					case 2:
+						database.amuletsUnlocked[1] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a rabbit.");
+						database.amuletNames[1] = database.hiddenAmuletNames[1];
+						database.amuletDesc[1] = database.hiddenAmuletDesc[1];
+						break;
+					case 3:
+						database.amuletsUnlocked[2] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a shield.");
+						database.amuletNames[2] = database.hiddenAmuletNames[2];
+						database.amuletDesc[2] = database.hiddenAmuletDesc[2];
+						break;
+					case 4:
+						database.amuletsUnlocked[3] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a dagger.");
+						database.amuletNames[3] = database.hiddenAmuletNames[3];
+						database.amuletDesc[3] = database.hiddenAmuletDesc[3];
+						break;
+					case 5:
+						database.amuletsUnlocked[4] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a gold coin.");
+						database.amuletNames[4] = database.hiddenAmuletNames[4];
+						database.amuletDesc[4] = database.hiddenAmuletDesc[4];
+						break;
+					}
+				}
+				if (database.getRoom() >= 10) {
 					window.dungeonEnemyDefeatedPanel.setVisible(false);
 					window.dungeonOptionsPanel.setVisible(true);
 					window.dungeonPanel.setVisible(false);
 					window.townPanel.setVisible(true);
 					window.goldCounter.setText("Gold: " + player.getGold());
 					playerData.Save(database.getSave());
-				} else {
-					int tempGold = 0;
-					switch (database.getFloor()) {
-					case 1:
-						tempGold = generator.nextInt(10) + 5;
-						break;
-					case 2:
-						tempGold = generator.nextInt(20) + 15;
-						break;
-					case 3:
-						tempGold = generator.nextInt(30) + 25;
-						break;
-					case 4:
-						tempGold = generator.nextInt(40) + 35;
-						break;
-					case 5:
-						tempGold = generator.nextInt(50) + 45;
-						break;
-					}
-					JOptionPane.showMessageDialog(window.window,
-							"You defeated the enemy and gained " + tempGold + " gold!");
-					player.setGold(player.getGold() + tempGold);
 				}
 			}
 		}
@@ -670,156 +429,81 @@ public class listener implements ActionListener{
 				JOptionPane.showMessageDialog(window.window, "How did both of you dumbasses miss.");
 				break;
 			}
-			if (player.getHealth() <= 0) {
+			if (dungeon.playerDead()) {
 				window.dungeonPanel.setVisible(false);
 				window.townPanel.setVisible(true);
-				JOptionPane.showMessageDialog(window.window,
-						"You passed out from all of your injuries and were brought back to town! The doctor took some of your gold as expenses!");
-				player.setGold(player.getGold() - player.getGold() / 20);
-				window.goldCounter.setText("Gold: " + player.getGold());
+				dungeon.playerDead();
 				playerData.Save(database.getSave());
 			}
-			if (enemy.getHealth() <= 0) {
+			boolean[] rewards = dungeon.enemyDead(database.getRoom(), database.getFloor(), database.getBoss1(), database.getBoss2(), database.getBoss3(), database.getBoss4(), database.getBoss5());
+			if (rewards[0]) {
 				window.dungeonEnemyDefeatedPanel.setVisible(true);
 				window.dungeonOptionsPanel.setVisible(false);
-				if (database.getRoom() >= 10) {
-					int tempGold = 0;
-					int dropAmulet = 0;
-					switch (database.getFloor()) {
+				if (rewards[1]) {
+					switch(database.getFloor()) {
 					case 1:
-						if (database.getBoss1()) {
-							tempGold = generator.nextInt(10) + 5;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 50 gold!");
-							player.setGold(player.getGold() + 50);
-							database.setBoss1(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[0] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a small crosshair.");
-							database.amuletNames[0] = database.hiddenAmuletNames[0];
-							database.amuletDesc[0] = database.hiddenAmuletDesc[0];
-						}
+						database.setBoss1(true);
 						break;
 					case 2:
-						if (database.getBoss2()) {
-							tempGold = generator.nextInt(20) + 15;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 175 gold!");
-							player.setGold(player.getGold() + 150);
-							database.setBoss2(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[1] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a rabbit.");
-							database.amuletNames[1] = database.hiddenAmuletNames[1];
-							database.amuletDesc[1] = database.hiddenAmuletDesc[1];
-						}
+						database.setBoss2(true);
 						break;
 					case 3:
-						if (database.getBoss3()) {
-							tempGold = generator.nextInt(30) + 25;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 300 gold!");
-							player.setGold(player.getGold() + 250);
-							database.setBoss3(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[2] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a shield.");
-							database.amuletNames[2] = database.hiddenAmuletNames[2];
-							database.amuletDesc[2] = database.hiddenAmuletDesc[2];
-						}
+						database.setBoss3(true);
 						break;
 					case 4:
-						if (database.getBoss4()) {
-							tempGold = generator.nextInt(40) + 35;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 425 gold!");
-							player.setGold(player.getGold() + 350);
-							database.setBoss4(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[3] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a dagger.");
-							database.amuletNames[3] = database.hiddenAmuletNames[3];
-							database.amuletDesc[3] = database.hiddenAmuletDesc[3];
-						}
+						database.setBoss4(true);
 						break;
 					case 5:
-						if (database.getBoss5()) {
-							tempGold = generator.nextInt(50) + 45;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 550 gold!");
-							player.setGold(player.getGold() + 500);
-							database.setBoss5(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[4] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a gold coin.");
-							database.amuletNames[4] = database.hiddenAmuletNames[4];
-							database.amuletDesc[4] = database.hiddenAmuletDesc[4];
-						}
+						database.setBoss5(true);
 						break;
 					}
+				}
+				if (rewards[2]) {
+					switch(database.getFloor()) {
+					case 1:
+						database.amuletsUnlocked[0] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a small crosshair.");
+						database.amuletNames[0] = database.hiddenAmuletNames[0];
+						database.amuletDesc[0] = database.hiddenAmuletDesc[0];
+						break;
+					case 2:
+						database.amuletsUnlocked[1] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a rabbit.");
+						database.amuletNames[1] = database.hiddenAmuletNames[1];
+						database.amuletDesc[1] = database.hiddenAmuletDesc[1];
+						break;
+					case 3:
+						database.amuletsUnlocked[2] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a shield.");
+						database.amuletNames[2] = database.hiddenAmuletNames[2];
+						database.amuletDesc[2] = database.hiddenAmuletDesc[2];
+						break;
+					case 4:
+						database.amuletsUnlocked[3] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a dagger.");
+						database.amuletNames[3] = database.hiddenAmuletNames[3];
+						database.amuletDesc[3] = database.hiddenAmuletDesc[3];
+						break;
+					case 5:
+						database.amuletsUnlocked[4] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a gold coin.");
+						database.amuletNames[4] = database.hiddenAmuletNames[4];
+						database.amuletDesc[4] = database.hiddenAmuletDesc[4];
+						break;
+					}
+				}
+				if (database.getRoom() >= 10) {
 					window.dungeonEnemyDefeatedPanel.setVisible(false);
 					window.dungeonOptionsPanel.setVisible(true);
 					window.dungeonPanel.setVisible(false);
 					window.townPanel.setVisible(true);
 					window.goldCounter.setText("Gold: " + player.getGold());
 					playerData.Save(database.getSave());
-				} else {
-					int tempGold = 0;
-					switch (database.getFloor()) {
-					case 1:
-						tempGold = generator.nextInt(10) + 5;
-						break;
-					case 2:
-						tempGold = generator.nextInt(20) + 15;
-						break;
-					case 3:
-						tempGold = generator.nextInt(30) + 25;
-						break;
-					case 4:
-						tempGold = generator.nextInt(40) + 35;
-						break;
-					case 5:
-						tempGold = generator.nextInt(50) + 45;
-						break;
-					}
-					JOptionPane.showMessageDialog(window.window,
-							"You defeated the enemy and gained " + tempGold + " gold!");
-					player.setGold(player.getGold() + tempGold);
 				}
 			}
 		}
@@ -829,9 +513,8 @@ public class listener implements ActionListener{
 				player.setSMC(player.getSMC() - 1);
 				switch (result[0]) {
 				case 0:
-					JOptionPane.showMessageDialog(window.window,
-							"You pull back and heal for " + player.getMaxHealth() / 3 + " health! You have "
-									+ player.getSMC() + " uses left!");
+					JOptionPane.showMessageDialog(window.window, "You pull back and heal for "
+							+ player.getMaxHealth() / 3 + " health! You have " + player.getSMC() + " uses left!");
 					break;
 				case 1:
 					JOptionPane.showMessageDialog(window.window, "You double strike the enemy for " + result[1]
@@ -840,155 +523,82 @@ public class listener implements ActionListener{
 				case 2:
 					JOptionPane.showMessageDialog(window.window,
 							"You stole some of the enemies life force and healed yourself for "
-									+ player.getMaxHealth() / 5 + " HP! You have " + player.getSMC()
-									+ " uses left!");
+									+ player.getMaxHealth() / 5 + " HP! You have " + player.getSMC() + " uses left!");
 					break;
 				}
 			} else {
 				JOptionPane.showMessageDialog(window.window,
 						"You can't do this anymore dummy, you used all your special skills!");
 			}
-			if (enemy.getHealth() <= 0) {
+			boolean[] rewards = dungeon.enemyDead(database.getRoom(), database.getFloor(), database.getBoss1(), database.getBoss2(), database.getBoss3(), database.getBoss4(), database.getBoss5());
+			if (rewards[0]) {
 				window.dungeonEnemyDefeatedPanel.setVisible(true);
 				window.dungeonOptionsPanel.setVisible(false);
-				if (database.getRoom() >= 10) {
-					int tempGold = 0;
-					int dropAmulet = 0;
-					switch (database.getFloor()) {
+				if (rewards[1]) {
+					switch(database.getFloor()) {
 					case 1:
-						if (database.getBoss1()) {
-							tempGold = generator.nextInt(10) + 5;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 50 gold!");
-							player.setGold(player.getGold() + 50);
-							database.setBoss1(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[0] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a small crosshair.");
-							database.amuletNames[0] = database.hiddenAmuletNames[0];
-							database.amuletDesc[0] = database.hiddenAmuletDesc[0];
-						}
+						database.setBoss1(true);
 						break;
 					case 2:
-						if (database.getBoss2()) {
-							tempGold = generator.nextInt(20) + 15;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 175 gold!");
-							player.setGold(player.getGold() + 150);
-							database.setBoss2(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[1] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a rabbit.");
-							database.amuletNames[1] = database.hiddenAmuletNames[1];
-							database.amuletDesc[1] = database.hiddenAmuletDesc[1];
-						}
+						database.setBoss2(true);
 						break;
 					case 3:
-						if (database.getBoss3()) {
-							tempGold = generator.nextInt(30) + 25;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 300 gold!");
-							player.setGold(player.getGold() + 250);
-							database.setBoss3(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[2] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a shield.");
-							database.amuletNames[2] = database.hiddenAmuletNames[2];
-							database.amuletDesc[2] = database.hiddenAmuletDesc[2];
-						}
+						database.setBoss3(true);
 						break;
 					case 4:
-						if (database.getBoss4()) {
-							tempGold = generator.nextInt(40) + 35;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 425 gold!");
-							player.setGold(player.getGold() + 350);
-							database.setBoss4(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[3] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a dagger.");
-							database.amuletNames[3] = database.hiddenAmuletNames[3];
-							database.amuletDesc[3] = database.hiddenAmuletDesc[3];
-						}
+						database.setBoss4(true);
 						break;
 					case 5:
-						if (database.getBoss5()) {
-							tempGold = generator.nextInt(50) + 45;
-							JOptionPane.showMessageDialog(window.window,
-									"You defeated the enemy and gained " + tempGold + " gold!");
-							player.setGold(player.getGold() + tempGold);
-						} else {
-							JOptionPane.showMessageDialog(window.window,
-									"You have defeated the boss and completed this floor!  You gained 550 gold!");
-							player.setGold(player.getGold() + 500);
-							database.setBoss5(true);
-						}
-						dropAmulet = generator.nextInt(20);
-						if (dropAmulet == 0) {
-							database.amuletsUnlocked[4] = true;
-							JOptionPane.showMessageDialog(window.window,
-									"You look to the floor to find a small amulet. Inscribed on it is a gold coin.");
-							database.amuletNames[4] = database.hiddenAmuletNames[4];
-							database.amuletDesc[4] = database.hiddenAmuletDesc[4];
-						}
+						database.setBoss5(true);
 						break;
 					}
+				}
+				if (rewards[2]) {
+					switch(database.getFloor()) {
+					case 1:
+						database.amuletsUnlocked[0] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a small crosshair.");
+						database.amuletNames[0] = database.hiddenAmuletNames[0];
+						database.amuletDesc[0] = database.hiddenAmuletDesc[0];
+						break;
+					case 2:
+						database.amuletsUnlocked[1] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a rabbit.");
+						database.amuletNames[1] = database.hiddenAmuletNames[1];
+						database.amuletDesc[1] = database.hiddenAmuletDesc[1];
+						break;
+					case 3:
+						database.amuletsUnlocked[2] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a shield.");
+						database.amuletNames[2] = database.hiddenAmuletNames[2];
+						database.amuletDesc[2] = database.hiddenAmuletDesc[2];
+						break;
+					case 4:
+						database.amuletsUnlocked[3] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a dagger.");
+						database.amuletNames[3] = database.hiddenAmuletNames[3];
+						database.amuletDesc[3] = database.hiddenAmuletDesc[3];
+						break;
+					case 5:
+						database.amuletsUnlocked[4] = true;
+						JOptionPane.showMessageDialog(window.window,
+								"You look to the floor to find a small amulet. Inscribed on it is a gold coin.");
+						database.amuletNames[4] = database.hiddenAmuletNames[4];
+						database.amuletDesc[4] = database.hiddenAmuletDesc[4];
+						break;
+					}
+				}
+				if (database.getRoom() >= 10) {
 					window.dungeonEnemyDefeatedPanel.setVisible(false);
 					window.dungeonOptionsPanel.setVisible(true);
 					window.dungeonPanel.setVisible(false);
 					window.townPanel.setVisible(true);
 					window.goldCounter.setText("Gold: " + player.getGold());
 					playerData.Save(database.getSave());
-				} else {
-					int tempGold = 0;
-					switch (database.getFloor()) {
-					case 1:
-						tempGold = generator.nextInt(10) + 5;
-						break;
-					case 2:
-						tempGold = generator.nextInt(20) + 15;
-						break;
-					case 3:
-						tempGold = generator.nextInt(30) + 25;
-						break;
-					case 4:
-						tempGold = generator.nextInt(40) + 35;
-						break;
-					case 5:
-						tempGold = generator.nextInt(50) + 45;
-						break;
-					}
-					JOptionPane.showMessageDialog(window.window,
-							"You defeated the enemy and gained " + tempGold + " gold!");
-					player.setGold(player.getGold() + tempGold);
 				}
 			}
 		}

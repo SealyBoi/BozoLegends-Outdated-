@@ -117,6 +117,12 @@ public class playerData {
 			bw.write("" + database.equippedAmulet[1]);
 			bw.newLine();
 			bw.write("" + database.currEquippedAmulet);
+			bw.newLine();
+			bw.write("" + player.getWeapon());
+			bw.newLine();
+			bw.write("" + player.getArmor());
+			bw.newLine();
+			bw.write("" + player.getAmulet());
 			bw.close();
 		} catch (IOException e) {
 			System.out.println("An error occured.");
@@ -231,6 +237,12 @@ public class playerData {
 			database.equippedAmulet[1] = line;
 			line = br.readLine();
 			database.currEquippedAmulet = Integer.parseInt(line);
+			line = br.readLine();
+			player.setWeapon(Integer.parseInt(line));
+			line = br.readLine();
+			player.setArmor(Integer.parseInt(line));
+			line = br.readLine();
+			player.setAmulet(Integer.parseInt(line));
 			br.close();
 		} catch (IOException e) {
 			System.out.println("An error occured.");

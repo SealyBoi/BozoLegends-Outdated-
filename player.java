@@ -9,6 +9,10 @@ public class player{
 	private int accuracy;
 	private int gold;
 	private int specialMoveCounter;
+	private int currWeapon;
+	private int currArmor;
+	private int currAmulet;
+	private boolean doubleGold;
 	
 	// Set Player Stats
 	public void setName(String newName) {
@@ -38,6 +42,18 @@ public class player{
 	}
 	public void setSMC(int newSMC) {
 		specialMoveCounter = newSMC;
+	}
+	public void setDG(boolean newDG) {
+		doubleGold = newDG;
+	}
+	public void setWeapon(int weapon) {
+		currWeapon = weapon;
+	}
+	public void setArmor(int armor) {
+		currArmor = armor;
+	}
+	public void setAmulet(int amulet) {
+		currAmulet = amulet;
 	}
 	public void restoreHealth() {
 		health = maxHealth;
@@ -70,5 +86,17 @@ public class player{
 	}
 	public int getSMC() {
 		return specialMoveCounter;
+	}
+	public boolean getDG() {
+		return doubleGold;
+	}
+	public int getWeapon() {
+		return currWeapon;
+	}
+	public int getArmor() {
+		return currArmor;
+	}
+	public int getAmulet() {
+		return currAmulet;
 	}
 }

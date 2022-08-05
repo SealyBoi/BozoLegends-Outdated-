@@ -56,7 +56,6 @@ public class database {
 	boolean[] amuletsUnlocked = { false, false, false, false, false };
 	String[] equippedAmulet = { "None", "0" };
 	int currEquippedAmulet = -1;
-	boolean doubleGold = false;
 
 	// Amulet data storage
 	String[] hiddenAmuletNames = { "Amulet of Precision", "Amulet of Speed", "Amulet of Defense", "Amulet of Power",

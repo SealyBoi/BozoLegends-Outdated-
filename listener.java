@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -6,7 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class listener implements ActionListener {
-	window window = main.window;
+	static window window = main.window;
 	static player player = new player();
 	static enemy enemy = new enemy();
 	playerData playerData = new playerData();
@@ -227,29 +226,36 @@ public class listener implements ActionListener {
 		}
 		if (e.getSource() == window.selectFloor) {
 			window.floorSelectPanel.setVisible(false);
-			window.dungeonPanel.setVisible(true);
-			window.dungeonOptionsPanel.setVisible(true);
 			if (window.firstFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor1E(), database.getFloor1S(), true);
 				database.setRoom(1);
 				database.setFloor(1);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.secondFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor2E(), database.getFloor2S(), true);
 				database.setRoom(1);
-				;
 				database.setFloor(2);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.thirdFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor3E(), database.getFloor3S(), true);
 				database.setRoom(1);
 				database.setFloor(3);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.fourthFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor4E(), database.getFloor4S(), true);
 				database.setRoom(1);
 				database.setFloor(4);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.fifthFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor5E(), database.getFloor5S(), true);
 				database.setRoom(1);
 				database.setFloor(5);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else {
 				JOptionPane.showMessageDialog(window.window, "Please select a floor.");
 			}
@@ -310,6 +316,54 @@ public class listener implements ActionListener {
 			window.townPanel.setVisible(true);
 			window.goldCounter.setText("Gold: " + player.getGold());
 			playerData.Save(database.getSave());
+		}
+		
+		// Trials Select
+		if (e.getSource() == window.trials) {
+			window.townPanel.setVisible(false);
+			window.trialsSelectPanel.setVisible(true);
+		}
+		if (e.getSource() == window.selectTrial) {
+			window.trialsSelectPanel.setVisible(false);
+			if (window.firstTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor1E(), database.getFloor1S(), true);
+				database.setRoom(1);
+				database.setFloor(1);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.secondTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor2E(), database.getFloor2S(), true);
+				database.setRoom(1);
+				;
+				database.setFloor(2);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.thirdTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor3E(), database.getFloor3S(), true);
+				database.setRoom(1);
+				database.setFloor(3);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.fourthTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor4E(), database.getFloor4S(), true);
+				database.setRoom(1);
+				database.setFloor(4);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.fifthTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor5E(), database.getFloor5S(), true);
+				database.setRoom(1);
+				database.setFloor(5);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else {
+				JOptionPane.showMessageDialog(window.window, "Please select a trial.");
+			}
+		}
+		if (e.getSource() == window.leaveTrialSelection) {
+			window.trialsSelectPanel.setVisible(false);
+			window.townPanel.setVisible(true);
+			window.goldCounter.setText("Gold: " + player.getGold());
 		}
 
 		// Dungeon Options

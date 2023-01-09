@@ -2,11 +2,11 @@
 public class enemy {
 	
 	private String name;
-	private int maxHealth;
-	private int health;
-	private int damage;
-	private int speed;
-	private int accuracy;
+	private static int maxHealth;
+	private static int health;
+	private static int damage;
+	private static int speed;
+	private static int accuracy;
 	
 	// Set Enemy Stats
 	public void setName(String newName) {

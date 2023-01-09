@@ -8,7 +8,7 @@ public class shop {
 	player player = listener.player;
 	window window = main.window;
 
-	private int currItemDisplayed = 0;
+	static int currItemDisplayed;
 
 	public void enterShop(String shopName, JLabel itemName, JLabel itemCost, JLabel itemMod, String[] itemNames,
 			int[] itemPrices, int[] itemMods, JLabel itemDisplayedCounter, JButton previousItem, JButton nextItem,
@@ -22,7 +22,7 @@ public class shop {
 		case "armor":
 			itemMod.setText((itemMods[0] + " Extra Health"));
 			break;
-		}
+		} // check if player is in weapon or armor shop
 		currItemDisplayed = 0;
 		itemDisplayedCounter.setText((currItemDisplayed + 1) + "/" + numberOfItems);
 		previousItem.setBackground(Color.darkGray);
@@ -35,11 +35,11 @@ public class shop {
 				equipItem.setText("Equipped");
 			} else {
 				equipItem.setText("Equip");
-			}
+			} // if item is already equipped, change button to equipped
 		} else {
 			purchaseItem.setVisible(true);
 			equipItem.setVisible(false);
-		}
+		} // if item is already purchased, change button to equip
 	}
 
 	public void enterDrops(JLabel itemName, JLabel itemDesc, String[] itemNames, String[] itemDescs,
@@ -57,10 +57,10 @@ public class shop {
 				equipItem.setText("Equipped");
 			} else {
 				equipItem.setText("Equip");
-			}
+			} // if item is already equipped, change button to equipped
 		} else {
 			equipItem.setVisible(false);
-		}
+		} // if item is already found, change button to equip
 	}
 
 	public boolean purchaseItem(int[] itemPrices, boolean[] itemsPurchased, JButton purchaseItem, JButton equipItem) {
@@ -73,7 +73,7 @@ public class shop {
 			return true;
 		} else {
 			return false;
-		}
+		} // if player has enough gold, purchase item
 	}
 
 	public void equipItem(String shopName, String[] equippedItem, JButton equipItem, JLabel townItemEquipped,
@@ -92,7 +92,7 @@ public class shop {
 			townItemEquipped.setText("Armor: " + equippedItem[0]);
 			player.setArmor(currItemDisplayed);
 			break;
-		}
+		} // check if in weapon or armor shop
 	}
 
 	public void equipAmulet(String[] equippedAmulet, String[] amuletNames, int[] amuletMods, JButton equipAmulet,
@@ -113,7 +113,7 @@ public class shop {
 		case 4:
 			player.setDG(false);
 			break;
-		}
+		} // check which amulet player has currently equipped
 		equippedAmulet[0] = amuletNames[currItemDisplayed];
 		equippedAmulet[1] = "" + amuletMods[currItemDisplayed];
 		equipAmulet.setText("Equipped");
@@ -134,7 +134,7 @@ public class shop {
 		case 4:
 			player.setDG(true);
 			break;
-		}
+		} // apply amulet stats that player is selecting
 		townAmuletEquipped.setText("Amulet: " + equippedAmulet[0]);
 	}
 
@@ -154,10 +154,10 @@ public class shop {
 			case "armor":
 				itemMod.setText(itemMods[currItemDisplayed] + " Extra Health");
 				break;
-			}
+			} // check if player is in armor shop or item shop
 			if (currItemDisplayed >= numberOfItems - 1) {
 				nextItem.setBackground(Color.darkGray);
-			}
+			} // if there is no item after this one, show player they are at the end of the list
 			previousItem.setBackground(Color.green);
 			if (itemsPurchased[currItemDisplayed]) {
 				equipItem.setVisible(true);
@@ -167,12 +167,12 @@ public class shop {
 					equipItem.setText("Equipped");
 				} else {
 					equipItem.setText("Equip");
-				}
+				} // if weapon/armor is already equipped, show player they already have it equipped
 			} else {
 				purchaseItem.setVisible(true);
 				equipItem.setVisible(false);
-			}
-		}
+			} // if current item has been purchased, display an equip or equipped button instead
+		} // if the current item displayed is not the final item, show the next item
 	}
 
 	public void nextDrop(JLabel dropDisplayedCounter, JLabel dropName, JLabel dropDesc, String[] dropNames,
@@ -185,18 +185,18 @@ public class shop {
 			dropDesc.setText(dropDescs[currItemDisplayed]);
 			if (currItemDisplayed >= numberOfDrops - 1) {
 				nextDrop.setBackground(Color.darkGray);
-			}
+			} // if there is no item after this one, show player they are at the end of the list
 			previousDrop.setBackground(Color.green);
 			if (dropsUnlocked[currItemDisplayed]) {
 				if (player.getAmulet() == currItemDisplayed) {
 					equipDrop.setText("Equipped");
 				} else {
 					equipDrop.setText("Equip");
-				}
+				} // if amulet is already equipped, display equipped button
 			} else {
 				equipDrop.setVisible(false);
-			}
-		}
+			} // if current item has been found, display an equip or equipped button instead
+		} // if the current item displayed is not the final item, show the next item
 	}
 
 	public void previousItem(String shopName, int numberOfItems, JLabel itemDisplayedCounter, JLabel itemName,
@@ -215,10 +215,10 @@ public class shop {
 			case "armor":
 				itemMod.setText(itemMods[currItemDisplayed] + " Extra Health");
 				break;
-			}
+			} // check if in weapon or armor shop
 			if (currItemDisplayed <= 0) {
 				previousItem.setBackground(Color.darkGray);
-			}
+			} // if item before this one does not exist, show player they are at the beginning of the list
 			nextItem.setBackground(Color.green);
 			if (itemsPurchased[currItemDisplayed]) {
 				equipItem.setVisible(true);
@@ -228,12 +228,12 @@ public class shop {
 					equipItem.setText("Equipped");
 				} else {
 					equipItem.setText("Equip");
-				}
+				} // if item is already equipped, display equipped button
 			} else {
 				purchaseItem.setVisible(true);
 				equipItem.setVisible(false);
-			}
-		}
+			} // if item is already purchased, display equip button
+		} // if item displayed is not the first item in the list, move to previous item
 	}
 
 	public void previousDrop(JLabel dropDisplayedCounter, JLabel dropName, JLabel dropDesc, String[] dropNames,
@@ -246,7 +246,7 @@ public class shop {
 			dropDesc.setText(dropDescs[currItemDisplayed]);
 			if (currItemDisplayed <= 0) {
 				previousDrop.setBackground(Color.darkGray);
-			}
+			} // if item before this one does not exist, show player they are at the beginning of the list
 			nextDrop.setBackground(Color.green);
 			if (dropsUnlocked[currItemDisplayed]) {
 				equipDrop.setVisible(true);
@@ -254,11 +254,11 @@ public class shop {
 					equipDrop.setText("Equipped");
 				} else {
 					equipDrop.setText("Equip");
-				}
+				} // if item is already equipped, display equipped button
 			} else {
 				equipDrop.setVisible(false);
-			}
-		}
+			} // if item is already found, display equip button
+		} // if item displayed is not the first item in the list, move to previous item
 	}
 
 	public void increaseAccuracy(int cost, int increase) {
@@ -270,7 +270,7 @@ public class shop {
 			JOptionPane.showMessageDialog(window.window, "I LIKE PENNIES! (You can't increase this any more stoopid)");
 		} else {
 			JOptionPane.showMessageDialog(window.window, "I LIKE PENNIES! (You don't have enough money dummy)");
-		}
+		} // if player has enough gold and not max accuracy, increase stat
 	}
 
 	public void increaseSpeed(int cost, int increase) {
@@ -282,6 +282,6 @@ public class shop {
 			JOptionPane.showMessageDialog(window.window, "I LIKE QUARTERS! (You can't increase this any more stoopid)");
 		} else {
 			JOptionPane.showMessageDialog(window.window, "I LIKE QUARTERS! (You don't have enough money dummy)");
-		}
+		} // if player has enough gold and not max speed, increase stat
 	}
 }

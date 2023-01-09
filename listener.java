@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
@@ -6,7 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class listener implements ActionListener {
-	window window = main.window;
+	static window window = main.window;
 	static player player = new player();
 	static enemy enemy = new enemy();
 	playerData playerData = new playerData();
@@ -227,29 +226,36 @@ public class listener implements ActionListener {
 		}
 		if (e.getSource() == window.selectFloor) {
 			window.floorSelectPanel.setVisible(false);
-			window.dungeonPanel.setVisible(true);
-			window.dungeonOptionsPanel.setVisible(true);
 			if (window.firstFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor1E(), database.getFloor1S(), true);
 				database.setRoom(1);
 				database.setFloor(1);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.secondFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor2E(), database.getFloor2S(), true);
 				database.setRoom(1);
-				;
 				database.setFloor(2);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.thirdFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor3E(), database.getFloor3S(), true);
 				database.setRoom(1);
 				database.setFloor(3);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.fourthFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor4E(), database.getFloor4S(), true);
 				database.setRoom(1);
 				database.setFloor(4);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else if (window.fifthFloor.isSelected()) {
 				dungeon.createRoom(database.getFloor5E(), database.getFloor5S(), true);
 				database.setRoom(1);
 				database.setFloor(5);
+				window.dungeonPanel.setVisible(true);
+				window.dungeonOptionsPanel.setVisible(true);
 			} else {
 				JOptionPane.showMessageDialog(window.window, "Please select a floor.");
 			}
@@ -311,6 +317,56 @@ public class listener implements ActionListener {
 			window.goldCounter.setText("Gold: " + player.getGold());
 			playerData.Save(database.getSave());
 		}
+		
+		// Trials Select
+		if (e.getSource() == window.trials) {
+			window.townPanel.setVisible(false);
+			window.trialsSelectPanel.setVisible(true);
+		}
+		if (e.getSource() == window.selectTrial) {
+			if (window.ffFirstTrial.isSelected()) {
+				window.trialsSelectPanel.setVisible(false);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);
+				dungeon.createBoss("Goat Gnome", 36, 3, 5, 88);
+			} else if (window.ffSecondTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor2E(), database.getFloor2S(), true);
+				database.setRoom(1);
+				;
+				database.setFloor(2);
+				window.trialsSelectPanel.setVisible(false);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.ffThirdTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor3E(), database.getFloor3S(), true);
+				database.setRoom(1);
+				database.setFloor(3);
+				window.trialsSelectPanel.setVisible(false);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.ffFourthTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor4E(), database.getFloor4S(), true);
+				database.setRoom(1);
+				database.setFloor(4);
+				window.trialsSelectPanel.setVisible(false);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else if (window.ffFifthTrial.isSelected()) {
+				/*dungeon.createRoom(database.getFloor5E(), database.getFloor5S(), true);
+				database.setRoom(1);
+				database.setFloor(5);
+				window.trialsSelectPanel.setVisible(false);
+				window.dungeonPanel.setVisible(true);
+			    window.dungeonOptionsPanel.setVisible(true);*/
+			} else {
+				JOptionPane.showMessageDialog(window.window, "Please select a trial.");
+			}
+		}
+		if (e.getSource() == window.leaveTrialSelection) {
+			window.trialsSelectPanel.setVisible(false);
+			window.townPanel.setVisible(true);
+			window.goldCounter.setText("Gold: " + player.getGold());
+		}
 
 		// Dungeon Options
 		if (e.getSource() == window.dungeonLightAttack) {
@@ -336,6 +392,7 @@ public class listener implements ActionListener {
 				window.dungeonPanel.setVisible(false);
 				window.townPanel.setVisible(true);
 				dungeon.playerDead();
+				player.restoreHealth();
 				playerData.Save(database.getSave());
 			}
 			boolean[] rewards = dungeon.enemyDead(database.getRoom(), database.getFloor(), database.getBoss1(), database.getBoss2(), database.getBoss3(), database.getBoss4(), database.getBoss5());
@@ -433,6 +490,7 @@ public class listener implements ActionListener {
 				window.dungeonPanel.setVisible(false);
 				window.townPanel.setVisible(true);
 				dungeon.playerDead();
+				player.restoreHealth();
 				playerData.Save(database.getSave());
 			}
 			boolean[] rewards = dungeon.enemyDead(database.getRoom(), database.getFloor(), database.getBoss1(), database.getBoss2(), database.getBoss3(), database.getBoss4(), database.getBoss5());
@@ -616,6 +674,7 @@ public class listener implements ActionListener {
 						"You passed out from all of your injuries and were brought back to town! The doctor took some of your gold as expenses!");
 				player.setGold(player.getGold() - player.getGold() / 20);
 				window.goldCounter.setText("Gold: " + player.getGold());
+				player.restoreHealth();
 				playerData.Save(database.getSave());
 				break;
 			case 2:

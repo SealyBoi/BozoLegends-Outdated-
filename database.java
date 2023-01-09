@@ -1,12 +1,12 @@
 
 public class database {
-	private String selectedSave = "none";
-	private boolean beatBoss1 = false;
-	private boolean beatBoss2 = false;
-	private boolean beatBoss3 = false;
-	private boolean beatBoss4 = false;
-	private boolean beatBoss5 = false;
-	private int currentFloor, roomCounter;
+	private static String selectedSave = "none";
+	private static boolean beatBoss1 = false;
+	private static boolean beatBoss2 = false;
+	private static boolean beatBoss3 = false;
+	private static boolean beatBoss4 = false;
+	private static boolean beatBoss5 = false;
+	private static int currentFloor, roomCounter;
 
 	// Floor 1
 	private String[] floor1Enemies = { "Skeleton", "Undead Soldier", "Cursed Tombstone", "Graverobber", "Banshee" };
@@ -27,35 +27,57 @@ public class database {
 	// Floor 5
 	private String[] floor5Enemies = { "Shieldbearer", "Knight", "Squire", "Crusader", "Spearman" };
 	private int[] floor5Stats = { 60, 20, 9, 86 };
+	
+	// Trials
+	//Floor 1
+	private String[] trial11MB = {"Goat Gnome", "Garold the Gnome", "That One Akward Gnome", "Grandpa Gnome", "Elder Gnome"};
+	private int[] trial11Stats = {};
+	
+	//Floor 2
+	private String[] trial12MB = {};
+	private int[] trial12Stats = {};
+	
+	//Floor 3
+	private String[] trial13EMB = {};
+	private int[] trial13Stats = {};
+	
+	//Floor 4
+	private String[] trial14MB = {};
+	private int[] trial14Stats = {};
+	
+	//Floor 5
+	private String[] trial15MB = {};
+	private int[] trial15Stats = {};
+	
 
 	// Weapon List
 	String[] weaponNames = { "Rock", "Wooden Club", "Hatchet", "Mace", "Sword", "Halberd", "Great Hammer",
 			"Great Sword" };
 	int[] weaponPrices = { 50, 125, 400, 675, 975, 1200, 1500, 1800 };
 	int[] weaponDamages = { 5, 10, 14, 20, 28, 32, 36, 38 };
-	int currWeaponDisplayed = 0;
-	boolean[] weaponsPurchased = { false, false, false, false, false, false, false, false };
-	String[] equippedWeapon = { "None", "0", "0" };
-	int currEquippedWeapon = -1;
+	static int currWeaponDisplayed = 0;
+	static boolean[] weaponsPurchased = { false, false, false, false, false, false, false, false };
+	static String[] equippedWeapon = { "None", "0", "0" };
+	static int currEquippedWeapon = -1;
 
 	// Armor List
 	String[] armorNames = { "Leather Armor", "Scale Armor", "Plated Mail Armor", "Chainmail Armor", "Plated Iron Armor",
 			"Plated Steel Armor" };
 	int[] armorPrices = { 150, 300, 500, 800, 1000, 1500 };
 	int[] armorHealths = { 6, 12, 18, 24, 30, 36 };
-	int currArmorDisplayed = 0;
-	boolean[] armorsPurchased = { false, false, false, false, false, false };
-	String[] equippedArmor = { "None", "0", "0" };
-	int currEquippedArmor = -1;
+	static int currArmorDisplayed = 0;
+	static boolean[] armorsPurchased = { false, false, false, false, false, false };
+	static String[] equippedArmor = { "None", "0", "0" };
+	static int currEquippedArmor = -1;
 
 	// Amulet List
 	String[] amuletNames = { "???", "???", "???", "???", "???" };
 	int[] amuletModifiers = { 15, 3, 10, 12, 2 };
 	String[] amuletDesc = { "???", "???", "???", "???", "???" };
-	int currAmuletDisplayed = 0;
-	boolean[] amuletsUnlocked = { false, false, false, false, false };
-	String[] equippedAmulet = { "None", "0" };
-	int currEquippedAmulet = -1;
+	static int currAmuletDisplayed = 0;
+	static boolean[] amuletsUnlocked = { false, false, false, false, false };
+	static String[] equippedAmulet = { "None", "0" };
+	static int currEquippedAmulet = -1;
 
 	// Amulet data storage
 	String[] hiddenAmuletNames = { "Amulet of Precision", "Amulet of Speed", "Amulet of Defense", "Amulet of Power",

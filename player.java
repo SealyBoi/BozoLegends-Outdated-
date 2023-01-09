@@ -2,17 +2,17 @@ public class player{
 	
 	private String name;
 	private String build;
-	private int maxHealth;
-	private int health;
-	private int damage;
-	private int speed;
-	private int accuracy;
-	private int gold;
-	private int specialMoveCounter;
-	private int currWeapon;
-	private int currArmor;
-	private int currAmulet;
-	private boolean doubleGold;
+	private static int maxHealth;
+	private static int health;
+	private static int damage;
+	private static int speed;
+	private static int accuracy;
+	private static int gold;
+	private static int specialMoveCounter;
+	private static int currWeapon;
+	private static int currArmor;
+	private static int currAmulet;
+	private static boolean doubleGold;
 	
 	// Set Player Stats
 	public void setName(String newName) {
